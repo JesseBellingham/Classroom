@@ -1,0 +1,28 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+<div ng-controller="HomeCtrl">
+    <div class="row">
+        <table>
+            <thead>
+                <tr>
+                    <td ng-repeat="class in classes" ng-bind="class.Name">{{class.Name}}</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="row">
+    </div>
+</div>
+
+@section scripts
+{
+    @Scripts.Render("~/Content/app/services/home-service.js")
+    @Scripts.Render("~/Content/app/controllers/home-controller.js")
+}
