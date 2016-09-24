@@ -1,16 +1,24 @@
 ﻿namespace Classroom.DataLayer.Repositories
 {
     using System;
-    using System.Collections.Generic;
     using System.Linq;
-    using System.Web;
     using Entities;
     using System.Linq.Expressions;
+    using Interfaces.Repositories;
 
-    public class StudentRepository
+    public class StudentRepository : IStudentRepository
     {
-        private ClassroomDataContext _dataContext;
-        public StudentRepository() { }
+        private readonly ClassroomDataContext _dataContext;
+
+        public StudentRepository(ClassroomDataContext dataContext)
+        {
+            if (dataContext == null)
+            {
+                throw new ArgumentNullException("dataContext");
+            }
+
+            _dataContext = dataContext;
+        }
 
         public IQueryable<Student> GetStudents(Expression<Func<Student, bool>> filter)
         {

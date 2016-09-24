@@ -1,16 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace Classroom.DataLayer.Repositories
+﻿namespace Classroom.DataLayer.Repositories
 {
+    using System;
     using System.Linq;
     using Entities;
     using System.Linq.Expressions;
+    using Interfaces.Repositories;
 
-    public class EnrolmentRepository
+    public class EnrolmentRepository : IEnrolmentRepository
     {
-        private ClassroomDataContext _dataContext;
-        public EnrolmentRepository() { }
+        private readonly ClassroomDataContext _dataContext;
+
+        public EnrolmentRepository(ClassroomDataContext dataContext)
+        {
+            if (dataContext == null)
+            {
+                throw new ArgumentNullException("dataContext");
+            }
+
+            _dataContext = dataContext;
+        }
 
         public IQueryable<Enrolment> GetEnrolments()
         {

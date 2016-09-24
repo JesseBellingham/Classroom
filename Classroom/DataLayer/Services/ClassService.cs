@@ -4,12 +4,23 @@
     using System.Linq;
     using Entities;
     using Repositories;
+    using Interfaces;
+    using Interfaces.Repositories;
+    using System;
 
-    public class ClassService
+    public class ClassService : IClassService
     {
-        private ClassRepository _classRepository;
+        private readonly IClassRepository _classRepository;
 
-        public ClassService() { }
+        public ClassService(IClassRepository classRepository)
+        {
+            if (classRepository == null)
+            {
+                throw new ArgumentNullException("classRepository");
+            }
+
+            _classRepository = classRepository;
+        }
         
         public List<Class> GetClasses()
         {

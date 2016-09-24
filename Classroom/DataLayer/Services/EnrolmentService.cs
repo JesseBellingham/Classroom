@@ -1,18 +1,43 @@
 ﻿namespace Classroom.DataLayer.Services
 {
-    using System;
     using System.Linq;
     using Entities;
     using Repositories;
     using System.Collections.Generic;
+    using Interfaces;
+    using Interfaces.Repositories;
+    using System;
 
-    public class EnrolmentService
+    public class EnrolmentService : IEnrolmentService
     {
-        private EnrolmentRepository _enrolmentRepository;
-        private StudentService _studentService;
-        private ClassService _classService;
+        private readonly IEnrolmentRepository _enrolmentRepository;
+        private readonly IStudentService _studentService;
+        private readonly IClassService _classService;
 
-        public EnrolmentService() { }
+        public EnrolmentService
+        (
+            IEnrolmentRepository enrolmentRepository,
+            IStudentService studentService,
+            IClassService classService
+        )
+        {
+            if (enrolmentRepository == null)
+            {
+                throw new ArgumentNullException("enrolmentRepository");
+            }
+            if (studentService == null)
+            {
+                throw new ArgumentNullException("studentService");
+            }
+            if (classService == null)
+            {
+                throw new ArgumentNullException("classService");
+            }
+
+            _enrolmentRepository = enrolmentRepository;
+            _studentService = studentService;
+            _classService = classService;
+        }
 
         public List<Enrolment> GetEnrolments()
         {

@@ -4,11 +4,11 @@ app.service("HomeService", ["$http", function($http) {
     
     var homeService = {},
         query = {
-            getClassData: "/api/getclassdata"
+            getClassData: "/api/home/getclassdata"
         };
 
     homeService.getClassData = function() {
-        $http({
+        return $http({
             method: "GET",
             url: query.getClassData
         }).success(function(data) {
@@ -23,8 +23,12 @@ app.service("HomeService", ["$http", function($http) {
 .controller('HomeCtrl', ["$scope", "HomeService", function($scope, homeService) {
     $scope.getClassData = function() {
         homeService.getClassData().then(function(data) {
-            $scope.classes = data;
+            $scope.classes = data.data;
         });
+    };
+
+    $scope.showInfo = function(index) {
+        $scope.showEnrolments = index;
     };
 
     $scope.getClassData();

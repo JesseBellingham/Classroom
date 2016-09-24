@@ -3,20 +3,27 @@
 namespace Classroom.DataLayer.Repositories
 {
     using System;
-    using System.Collections.Generic;
     using System.Linq;
-    using System.Web;
     using Entities;
     using System.Linq.Expressions;
+    using Interfaces.Repositories;
 
-    public class ClassRepository
+    public class ClassRepository : IClassRepository
     {
-        private ClassroomDataContext _dataContext;
+        private readonly ClassroomDataContext _dataContext;
 
-        public ClassRepository() { }
+        public ClassRepository(ClassroomDataContext dataContext)
+        {
+            if (dataContext == null)
+            {
+                throw new ArgumentNullException("dataContext");
+            }
+
+            _dataContext = dataContext;
+        }
 
         public IQueryable<Class> GetClasses(Expression<Func<Class, bool>> filter)
-        {
+        {            
             return _dataContext.Classes.Where(filter);
         }
 

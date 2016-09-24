@@ -4,12 +4,23 @@
     using System.Collections.Generic;
     using Repositories;
     using System.Linq;
+    using Interfaces;
+    using Interfaces.Repositories;
+    using System;
 
-    public class StudentService
+    public class StudentService : IStudentService
     {
-        private StudentRepository _studentRepository;
+        private readonly IStudentRepository _studentRepository;
 
-        public StudentService() { }
+        public StudentService(IStudentRepository studentRepository)
+        {
+            if (studentRepository == null)
+            {
+                throw new ArgumentNullException("studentRepository");
+            }
+
+            _studentRepository = studentRepository;
+        }
 
         public List<Student> GetStudents()
         {
