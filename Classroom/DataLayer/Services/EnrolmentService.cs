@@ -51,6 +51,13 @@
                 .ToList();
         }
 
+        public List<Enrolment> GetEnrolmentsOfClass(int classId)
+        {
+            return
+                _enrolmentRepository.GetEnrolments(enrolment => enrolment.ClassId == classId)
+                .ToList();
+        }
+
         public void CreateEnrolment(int studentId, int classId)
         {
             var student = _studentService.GetStudentById(studentId);

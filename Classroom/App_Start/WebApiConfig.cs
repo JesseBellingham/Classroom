@@ -34,17 +34,16 @@
                 defaults: new { controller = "Home", action = "GetClassData" }
             );
 
+            config.Routes.MapHttpRoute
+            (
+                name: "CreateNewClass",
+                routeTemplate: "api/{controller}/{action}",
+                defaults: new { controller = "Home", action = "CreateNewClass" }
+            );
+
             #region Dependency Injection
             var builder = new ContainerBuilder();
-
-            //builder.RegisterAssemblyTypes
-            //(
-            //    Assembly.GetExecutingAssembly()
-            //)
-            //.Where(t => !t.IsAbstract && typeof(ApiController).IsAssignableFrom(t))
-            //.InstancePerLifetimeScope();
-
-            //builder.RegisterType<HomeController>();
+            
             builder.RegisterType<ClassroomDataContext>().InstancePerRequest();
             builder.RegisterType<ClassRepository>().As<IClassRepository>();
             builder.RegisterType<StudentRepository>().As<IStudentRepository>();
@@ -55,7 +54,6 @@
 
             builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
             builder.RegisterModule(new AutofacWebTypesModule());
-            //builder.RegisterWebApiFilterProvider(config);
 
             var container = builder.Build();
             config.DependencyResolver = new AutofacWebApiDependencyResolver(container);

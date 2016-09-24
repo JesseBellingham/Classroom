@@ -48,6 +48,24 @@
 
             foreach (var classroom in classes)
             {
+                var enrolments = _enrolmentService.GetEnrolmentsOfClass(classroom.Id);
+                var enrolmentModels = new List<EnrolmentModel>();
+
+                foreach (var enrolment in enrolments)
+                {
+                    enrolmentModels.Add
+                    (
+                        new EnrolmentModel
+                        {
+                            Id = enrolment.Id,
+                            ClassId = enrolment.ClassId,
+                            StudentFirstName = enrolment.Student.FirstName,
+                            StudentLastName = enrolment.Student.LastName,
+                            StudentAge = enrolment.Student.Age,
+                            StudentGPA = enrolment.Student.GPA
+                        }
+                    );
+                }
                 models.Add
                 (
                     new ClassDataModel
@@ -55,53 +73,18 @@
                         ClassId = classroom.Id,
                         ClassName = classroom.ClassName,
                         TeacherName = classroom.TeacherName,
-                        Location = classroom.Location
+                        Location = classroom.Location,
+                        Enrolments = enrolmentModels
                     }
                 );
             }
-            //var result = JsonConvert.SerializeObject(models);
-            return Request.CreateResponse(HttpStatusCode.OK, models);//Json(models);
+            return Request.CreateResponse(HttpStatusCode.OK, models);
         }
-
-        //private async Task<ClassDataModel> GetClasses()
-        //{
-        //    var classes = _classService.GetClasses();
-        //    var models = new List<ClassDataModel>();
-
-        //    foreach (var classroom in classes)
-        //    {
-        //        models.Add
-        //        (
-        //            new ClassDataModel
-        //            {
-        //                ClassId = classroom.Id,
-        //                ClassName = classroom.ClassName,
-        //                TeacherName = classroom.TeacherName
-        //            }
-        //        );
-        //    }
-        //}
-
-        //[ResponseType(typeof(List<ClassDataModel>))]
-        //public async Task<IHttpActionResult> Get()
-        //{
-        //    var classes = _classService.GetClasses();
-        //    var models = new List<ClassDataModel>();
-
-        //    foreach (var classroom in classes)
-        //    {
-        //        models.Add
-        //        (
-        //            new ClassDataModel
-        //            {
-        //                ClassId = classroom.Id,
-        //                ClassName = classroom.ClassName,
-        //                TeacherName = classroom.TeacherName
-        //            }
-        //        );
-        //    }
-        //    //var result = JsonConvert.SerializeObject(models);
-        //    return this.Ok(models); //Json(result);//Json(models);
-        //}
+        
+        public HttpResponseMessage CreateNewClass(NewClassModel model)
+        {
+            var classId = _classService.CreateNewClass(model.ClassName, model.Location, model.TeacherName);
+            return Request.CreateResponse(HttpStatusCode.OK, classId);
+        }
     }
 }

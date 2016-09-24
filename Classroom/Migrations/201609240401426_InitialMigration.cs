@@ -12,7 +12,7 @@ namespace Classroom.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        ClassName = c.String(),
+                        ClassName = c.String(nullable: false),
                         Location = c.String(),
                         TeacherName = c.String(),
                     })
@@ -23,23 +23,22 @@ namespace Classroom.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        CourseId = c.Int(nullable: false),
+                        ClassId = c.Int(nullable: false),
                         StudentId = c.Int(nullable: false),
-                        Class_Id = c.Int(),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Class", t => t.Class_Id)
+                .ForeignKey("dbo.Class", t => t.ClassId, cascadeDelete: true)
                 .ForeignKey("dbo.Student", t => t.StudentId, cascadeDelete: true)
-                .Index(t => t.StudentId)
-                .Index(t => t.Class_Id);
+                .Index(t => t.ClassId)
+                .Index(t => t.StudentId);
             
             CreateTable(
                 "dbo.Student",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        FirstName = c.String(),
-                        LastName = c.String(),
+                        FirstName = c.String(nullable: false),
+                        LastName = c.String(nullable: false),
                         Age = c.Int(nullable: false),
                         GPA = c.Double(nullable: false),
                     })
@@ -50,9 +49,9 @@ namespace Classroom.Migrations
         public override void Down()
         {
             DropForeignKey("dbo.Enrolment", "StudentId", "dbo.Student");
-            DropForeignKey("dbo.Enrolment", "Class_Id", "dbo.Class");
-            DropIndex("dbo.Enrolment", new[] { "Class_Id" });
+            DropForeignKey("dbo.Enrolment", "ClassId", "dbo.Class");
             DropIndex("dbo.Enrolment", new[] { "StudentId" });
+            DropIndex("dbo.Enrolment", new[] { "ClassId" });
             DropTable("dbo.Student");
             DropTable("dbo.Enrolment");
             DropTable("dbo.Class");

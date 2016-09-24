@@ -31,5 +31,12 @@ namespace Classroom.DataLayer.Repositories
         {
             return _dataContext.Classes;
         }
+
+        public int CreateClass(Class newClass)
+        {
+            _dataContext.Classes.Add(newClass);
+            _dataContext.SaveChanges();
+            return newClass.Id;
+        }
     }
 }

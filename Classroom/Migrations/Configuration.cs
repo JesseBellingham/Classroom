@@ -1,10 +1,11 @@
 namespace Classroom.Migrations
 {
+    using DataLayer.Entities;
     using System;
+    using System.Collections.Generic;
+    using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
-    using DataLayer.Entities;
-    using System.Collections.Generic;
 
     internal sealed class Configuration : DbMigrationsConfiguration<DataLayer.ClassroomDataContext>
     {
@@ -13,7 +14,7 @@ namespace Classroom.Migrations
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(DataLayer.ClassroomDataContext context)
+        protected override void Seed(Classroom.DataLayer.ClassroomDataContext context)
         {
             var students = new List<Student>
             {
@@ -78,17 +79,17 @@ namespace Classroom.Migrations
                 new Enrolment
                 {
                     StudentId = students.Single(s => s.LastName == "Alexander").Id,
-                    CourseId = classes.Single(c => c.ClassName == "Chemistry" ).Id
+                    ClassId = classes.Single(c => c.ClassName == "Chemistry" ).Id
                 },
                  new Enrolment
                  {
                     StudentId = students.Single(s => s.LastName == "Johnson").Id,
-                    CourseId = classes.Single(c => c.ClassName == "Biology" ).Id
+                    ClassId = classes.Single(c => c.ClassName == "Biology" ).Id
                  },
                  new Enrolment
                  {
                     StudentId = students.Single(s => s.LastName == "Mooney").Id,
-                    CourseId = classes.Single(c => c.ClassName == "Economics" ).Id
+                    ClassId = classes.Single(c => c.ClassName == "Economics" ).Id
                  }
             };
 
@@ -99,7 +100,7 @@ namespace Classroom.Migrations
                     (
                         e =>
                              e.Student.Id == enrolment.StudentId &&
-                             e.Class.Id == e.CourseId
+                             e.Class.Id == e.ClassId
                     );
                 if (!enrolmentExists)
                 {

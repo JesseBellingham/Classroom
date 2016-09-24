@@ -3,7 +3,7 @@
     public class Enrolment
     {
         public int Id { get; set; }
-        public int CourseId { get; set; }
+        public int ClassId { get; set; }
         public int StudentId { get; set; }
 
         public virtual Class Class { get; set; }

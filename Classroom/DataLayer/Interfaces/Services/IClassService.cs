@@ -8,5 +8,6 @@
         List<Class> GetClasses();
         Class GetClassByName(string className);
         Class GetClassById(int id);
+        int CreateNewClass(string className, string location = null, string teacherName = null);
     }
 }

@@ -1,0 +1,12 @@
+﻿<div class="modal-header">
+    <h3 class="modal-title" id="modal-title">Create new class</h3>
+</div>
+<div class="modal-body">
+    <p><input type="text" ng-model="newClass.className" placeholder="Class name"/></p>
+    <p><input type="text" ng-model="newClass.location" placeholder="Location (optional)"/></p>
+    <p><input type="text" ng-model="newClass.teacherName" placeholder="Teacher name (optional)" /></p>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" type="button" ng-click="createNewClass()">Create</button>
+    <button class="btn btn-warning" type="button" ng-click="close()">Cancel</button>
+</div>

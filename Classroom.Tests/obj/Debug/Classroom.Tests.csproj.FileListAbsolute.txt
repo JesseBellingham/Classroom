@@ -63,3 +63,5 @@ C:\projects\Classroom\Classroom.Tests\bin\Debug\Microsoft.Owin.Host.SystemWeb.xm
 C:\projects\Classroom\Classroom.Tests\obj\Debug\Classroom.Tests.csprojResolveAssemblyReference.cache
 C:\projects\Classroom\Classroom.Tests\obj\Debug\Classroom.Tests.dll
 C:\projects\Classroom\Classroom.Tests\obj\Debug\Classroom.Tests.pdb
+C:\projects\Classroom\Classroom.Tests\bin\Debug\Autofac.Integration.Mvc.dll
+C:\projects\Classroom\Classroom.Tests\bin\Debug\Autofac.Integration.Mvc.xml

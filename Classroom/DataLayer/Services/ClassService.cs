@@ -36,5 +36,18 @@
         {
             return _classRepository.GetClasses(c => c.Id == id).SingleOrDefault();
         }
+
+        public int CreateNewClass(string className, string location = null, string teacherName = null)
+        {
+            var newClass = new Class
+            {
+                ClassName = className,
+                Location = location,
+                TeacherName = teacherName
+            };
+
+            var classId = _classRepository.CreateClass(newClass);
+            return classId;
+        }
     }
 }
