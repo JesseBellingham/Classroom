@@ -7,7 +7,8 @@
     {
         List<Student> GetStudents();
         Student GetStudentById(int studentId);
-        List<Student> GetStudentsOfClass(string className);
+        List<Student> GetStudentsOfClass(int classId);
+        List<Student> GetEnrollableStudents(List<Student> existingStudents, int classId);
         void CreateStudent(string firstName, string lastName);
     }
 }

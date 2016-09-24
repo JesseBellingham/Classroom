@@ -41,6 +41,21 @@
                 defaults: new { controller = "Home", action = "CreateNewClass" }
             );
 
+            config.Routes.MapHttpRoute
+            (
+                name: "GetStudentsForEnrolment",
+                routeTemplate: "api/{controller}/{action}/{classId}",
+                defaults: new { controller = "Home", action = "GetStudentsForEnrolment" },
+                constraints: new { classId = @"\d+"}
+            );
+
+            config.Routes.MapHttpRoute
+            (
+                name: "EnrolStudent",
+                routeTemplate: "api/{controller}/{action}",
+                defaults: new { controller = "Home", action = "EnrolStudent" }
+            );
+
             #region Dependency Injection
             var builder = new ContainerBuilder();
             

@@ -57,7 +57,7 @@
                     (
                         new EnrolmentModel
                         {
-                            Id = enrolment.Id,
+                            StudentId = enrolment.Id,
                             ClassId = enrolment.ClassId,
                             StudentFirstName = enrolment.Student.FirstName,
                             StudentLastName = enrolment.Student.LastName,
@@ -80,11 +80,70 @@
             }
             return Request.CreateResponse(HttpStatusCode.OK, models);
         }
-        
+
         public HttpResponseMessage CreateNewClass(NewClassModel model)
         {
             var classId = _classService.CreateNewClass(model.ClassName, model.Location, model.TeacherName);
             return Request.CreateResponse(HttpStatusCode.OK, classId);
+        }
+
+        public HttpResponseMessage GetStudentsForEnrolment(int classId)
+        {
+            // This got messy fast
+            // Implement a entity to viewmodel conversion class
+            var enrolledStudents = _studentService.GetStudentsOfClass(classId);
+            var enrollableStudents = _studentService.GetEnrollableStudents(enrolledStudents, classId);
+            var enrolledStudentModels = new List<EnrolmentModel>();
+            var enrollableStudentModels = new List<EnrolmentModel>();            
+
+            foreach (var enrolledStudent in enrolledStudents)
+            {
+                enrolledStudentModels.Add
+                (
+                    new EnrolmentModel
+                    {
+                        StudentId = enrolledStudent.Id,
+                        StudentFirstName = enrolledStudent.FirstName,
+                        StudentLastName = enrolledStudent.LastName
+                    }
+                );
+            }
+
+            foreach (var enrollableStudent in enrollableStudents)
+            {
+                enrollableStudentModels.Add
+                (
+                    new EnrolmentModel
+                    {
+                        StudentId = enrollableStudent.Id,
+                        StudentFirstName = enrollableStudent.FirstName,
+                        StudentLastName = enrollableStudent.LastName
+                    }
+                );
+            }
+
+            var studentEnrolmentModel = new StudentEnrolmentModel
+            {
+                ExistingStudents = enrolledStudentModels,
+                EnrollableStudents = enrollableStudentModels
+            };
+
+            return Request.CreateResponse(HttpStatusCode.OK, studentEnrolmentModel);
+        }
+
+        [HttpPost]
+        public HttpResponseMessage EnrolStudent(EnrolmentModel model)
+        {
+            var student = _enrolmentService.CreateEnrolment(model.StudentId, model.ClassId);
+            var resultModel = new EnrolmentModel
+            {
+                ClassId = model.ClassId,
+                StudentId = student.Id,
+                StudentFirstName = student.FirstName,
+                StudentLastName = student.LastName
+            };
+
+            return Request.CreateResponse(HttpStatusCode.OK, resultModel);
         }
     }
 }

@@ -7,7 +7,7 @@ namespace Classroom.Models.View
 {
     public class EnrolmentModel
     {
-        public int Id { get; set; }
+        public int StudentId { get; set; }
         public int ClassId { get; set; }
         public string StudentFirstName { get; set; }
         public string StudentLastName { get; set; }

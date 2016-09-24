@@ -16,10 +16,13 @@
                     <td ng-bind="class.className"></td>
                     <td ng-bind="class.location"></td>
                     <td ng-bind="class.teacherName"></td>
-                    <td><a href ng-click="editClassDetails(class)"</td>
+                    <td><a href ng-click="editClassDetails(class)">Edit class details</a></td>
                     <td><a href ng-click="class.$hideRow = !class.$hideRow">Show enrolment info</a></td>
                 </tr>
                 <tr ng-repeat-end ng-show="class.$hideRow" class="ng-hide">
+                    <td></td>
+                    <td></td>
+                    <td></td>
                     <td></td>
                     <td>
                         <table class>
@@ -41,8 +44,9 @@
                                     <td ng-bind="enrolment.studentAge"></td>
                                     <td ng-bind="enrolment.studentGPA"></td>
                                 </tr>
-                            </tbody>
+                            </tbody>                            
                         </table>
+                        <button class="btn btn-primary" ng-click="addEnrolments(class.classId)">Add enrolments</button>
                     </td>                   
                 </tr>
             </tbody>

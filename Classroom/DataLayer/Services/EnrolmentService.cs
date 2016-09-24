@@ -58,7 +58,7 @@
                 .ToList();
         }
 
-        public void CreateEnrolment(int studentId, int classId)
+        public Student CreateEnrolment(int studentId, int classId)
         {
             var student = _studentService.GetStudentById(studentId);
             var classToEnrolInto = _classService.GetClassById(classId);
@@ -69,6 +69,7 @@
                 Class = classToEnrolInto
             };
             _enrolmentRepository.CreateEnrolment(enrolment);
+            return student;
         }
     }
 }

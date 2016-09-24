@@ -1,0 +1,22 @@
+﻿<div class="modal-header">
+    <h3 class="modal-title" id="modal-title">Enrol students</h3>
+</div>
+<div class="modal-body">
+    <div class="container enrolments-container">
+        <div class="unenrolled-students">
+            <ul>
+                Enrollable students
+                <li class="list-group-item unenrolled-student-item" ng-repeat="student in enrollableStudents">{{student.studentFirstName + " " + student.studentLastName }}<button class="btn btn-primary btn-sm button-enrol" ng-click="enrolStudent(student.studentId)">Enrol</button></li>
+            </ul>
+        </div>
+        <div class="enrolled-students">
+            <ul>
+                Existing students
+                <li class="list-group-item" ng-repeat="student in existingStudents">{{student.studentFirstName + " " + student.studentLastName }}</li>
+            </ul>
+        </div>
+    </div>    
+</div>
+<div class="modal-footer">
+    <button class="btn btn-warning" type="button" ng-click="close()">Done</button>
+</div>

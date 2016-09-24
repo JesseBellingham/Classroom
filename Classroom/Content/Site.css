@@ -22,4 +22,27 @@ select,
 textarea {
     max-width: 280px;
 }
+.enrolments-container
+{
+    position: relative;
+    min-width: 600px;
+    min-height: 150px;
+}
+.unenrolled-students { position: absolute; }
+.enrolled-students
+{
+    position: absolute;
+    right: 150px;
+}
+.unenrolled-student-item
+{
+    position: relative;
+    min-width: 200px;
+}
+.button-enrol
+{
+    position: absolute;
+    top: 5px;
+    right: 5px;
+}
 
