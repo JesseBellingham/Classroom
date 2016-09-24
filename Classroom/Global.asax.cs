@@ -16,7 +16,6 @@ namespace Classroom
 {
     public class MvcApplication : System.Web.HttpApplication
     {
-        //private static IContainer container { get; set; }
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
@@ -33,7 +32,6 @@ namespace Classroom
         {
             var builder = new ContainerBuilder();
             builder.RegisterControllers(typeof(MvcApplication).Assembly);
-            //builder.RegisterType<ClassroomDataContext>().As<DbContext>().InstancePerRequest();
             builder.RegisterType<ClassroomDataContext>().InstancePerRequest();
             builder.RegisterType<ClassRepository>().As<IClassRepository>();
             builder.RegisterType<StudentRepository>().As<IStudentRepository>();

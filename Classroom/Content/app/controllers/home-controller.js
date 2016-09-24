@@ -7,7 +7,7 @@ app.service("HomeService", ["$http", function($http) {
             getClassData: "/api/home/getclassdata",
             createNewClass: "/api/home/createnewclass",
             getStudentsForEnrolment: "api/home/getstudentsforenrolment/",
-            enrolStudent: "api/home/enrolstudent"
+            enrolStudent: "api/enrolment/create"
         };
 
     homeService.getClassData = function() {
@@ -101,9 +101,7 @@ app.service("HomeService", ["$http", function($http) {
         });
 
         modalInstance.result.then(function(result) {
-            // if (result) {
-            //     $scope.classes.push(result);
-            // }
+            $scope.getClassData();
         });
     };
 
@@ -134,7 +132,7 @@ app.service("HomeService", ["$http", function($http) {
     $scope.students = [];
 
     $scope.close = function() {
-        $uibModalInstance.dismiss('cancel');
+        $uibModalInstance.close();
     };
 
     // $scope.createNewClass = function() {
@@ -149,11 +147,17 @@ app.service("HomeService", ["$http", function($http) {
     $scope.enrolStudent = function(studentId) {
         homeService.enrolStudent(studentId, classId).then(function(data) {
             if (data.data) {
-                var index = $scope.enrollableStudents.indexOf(data.data);
-                if (index > 1) {
-                    $scope.enrollableStudents.splice(index, 1);
-                    $scope.existingStudents.push(data.data);
-                }
+                var student = data.data,
+                    found = false;
+                angular.forEach($scope.enrollableStudents, function(es, index) {
+                    if (!found) {
+                        if (student.studentId === es.studentId) {
+                            $scope.enrollableStudents.splice(index, 1);
+                            found = true;
+                        }
+                    }
+                });
+                $scope.existingStudents.push(student);
             }
         });
     };

@@ -131,19 +131,19 @@
             return Request.CreateResponse(HttpStatusCode.OK, studentEnrolmentModel);
         }
 
-        [HttpPost]
-        public HttpResponseMessage EnrolStudent(EnrolmentModel model)
-        {
-            var student = _enrolmentService.CreateEnrolment(model.StudentId, model.ClassId);
-            var resultModel = new EnrolmentModel
-            {
-                ClassId = model.ClassId,
-                StudentId = student.Id,
-                StudentFirstName = student.FirstName,
-                StudentLastName = student.LastName
-            };
+        //[HttpPost]
+        //public HttpResponseMessage EnrolStudent(EnrolmentModel model)
+        //{
+        //    var student = _enrolmentService.CreateEnrolment(model.StudentId, model.ClassId);
+        //    var resultModel = new EnrolmentModel
+        //    {
+        //        ClassId = model.ClassId,
+        //        StudentId = student.Id,
+        //        StudentFirstName = student.FirstName,
+        //        StudentLastName = student.LastName
+        //    };
 
-            return Request.CreateResponse(HttpStatusCode.OK, resultModel);
-        }
+        //    return Request.CreateResponse(HttpStatusCode.OK, resultModel);
+        //}
     }
 }

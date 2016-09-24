@@ -51,9 +51,9 @@
 
             config.Routes.MapHttpRoute
             (
-                name: "EnrolStudent",
+                name: "Create",
                 routeTemplate: "api/{controller}/{action}",
-                defaults: new { controller = "Home", action = "EnrolStudent" }
+                defaults: new { controller = "Enrolment", action = "Create" }
             );
 
             #region Dependency Injection

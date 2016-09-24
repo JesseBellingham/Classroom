@@ -45,4 +45,6 @@ textarea {
     top: 5px;
     right: 5px;
 }
+.student-high-gpa { background-color: lightblue; }
+.student-low-gpa { background-color: lightsalmon; }
 

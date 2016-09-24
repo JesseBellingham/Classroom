@@ -38,11 +38,13 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr ng-repeat="enrolment in class.enrolments">
+                                <tr ng-repeat="enrolment in class.enrolments" ng-class="{'student-high-gpa': enrolment.studentGPA > 3.2, 'student-low-gpa': enrolment.studentGPA < 2}">
                                     <td ng-bind="enrolment.studentFirstName"></td>
                                     <td ng-bind="enrolment.studentLastName"></td>
                                     <td ng-bind="enrolment.studentAge"></td>
                                     <td ng-bind="enrolment.studentGPA"></td>
+                                    <td ng-show="enrolment.studentGPA > 3.2"><a uib-tooltip="This student is excelling">Wow</a></td>
+                                    <td ng-show="enrolment.studentGPA < 2"><a uib-tooltip="This student is falling behind">Oh dear</a></td>
                                 </tr>
                             </tbody>                            
                         </table>
