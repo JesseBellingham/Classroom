@@ -6,7 +6,6 @@ using Classroom.DataLayer.Interfaces;
 using Classroom.DataLayer.Interfaces.Repositories;
 using Classroom.DataLayer.Repositories;
 using Classroom.DataLayer.Services;
-using System.Data.Entity;
 using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;

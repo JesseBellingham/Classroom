@@ -19,14 +19,7 @@
         {
             config.Formatters.JsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
             config.MapHttpAttributeRoutes();
-
-            //config.Routes.MapHttpRoute
-            //(
-            //    name: "DefaultApi",
-            //    routeTemplate: "api/{controller}/{id}",
-            //    defaults: new { id = RouteParameter.Optional }
-            //);
-
+            
             #region Classes
             config.Routes.MapHttpRoute
             (
@@ -49,6 +42,7 @@
                 defaults: new { controller = "Class", action = "Update" }
             );
             #endregion
+
             #region Enrolments
             config.Routes.MapHttpRoute
             (
@@ -65,6 +59,7 @@
                 defaults: new { controller = "Enrolment", action = "Create" }
             );
             #endregion
+
             #region Students
             config.Routes.MapHttpRoute
             (
@@ -73,6 +68,7 @@
                 defaults: new { controller = "Student", action = "Create" }
             );
             #endregion
+
             #region Dependency Injection
             var builder = new ContainerBuilder();
             

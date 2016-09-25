@@ -148,9 +148,7 @@ app.service("HomeService", ["$rootScope", "$http", function($rootScope, $http) {
         });
 
         modalInstance.result.then(function(result) {
-            // if (result) {
-            //     $scope.classes.push(result);
-            // }
+            // might have planned to do something here
         });
     };
 
@@ -234,10 +232,10 @@ app.service("HomeService", ["$rootScope", "$http", function($rootScope, $http) {
         // quick and even dirtier client-side validation
         $scope.firstNameMissing = false;
         $scope.lastNameMissing = false;
-        if ($scope.newStudent.studentFirstName === null) {
+        if (!$scope.newStudent.studentFirstName) {
             $scope.firstNameMissing = true;
         }
-        if ($scope.newStudent.studentLastName === null) {
+        if (!$scope.newStudent.studentLastName) {
             $scope.lastNameMissing = true;
         }
         if (!$scope.firstNameMissing && !$scope.lastNameMissing) {

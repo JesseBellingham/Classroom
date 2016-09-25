@@ -188,7 +188,6 @@
   <ItemGroup>
     <Compile Include="API\ClassController.cs" />
     <Compile Include="API\EnrolmentController.cs" />
-    <Compile Include="API\HomeController.cs" />
     <Compile Include="API\StudentController.cs" />
     <Compile Include="API\StudentEnrolmentController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -202,7 +201,6 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="DataLayer\ClassroomDataContext.cs" />
     <Compile Include="DataLayer\DomainModels\ClassModel.cs" />
-    <Compile Include="DataLayer\Interfaces\IClassroomDataContext.cs" />
     <Compile Include="DataLayer\Interfaces\Repositories\IClassRepository.cs" />
     <Compile Include="DataLayer\Interfaces\Repositories\IEnrolmentRepository.cs" />
     <Compile Include="DataLayer\Interfaces\Repositories\IStudentRepository.cs" />

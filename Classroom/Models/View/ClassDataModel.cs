@@ -1,8 +1,7 @@
-﻿using Classroom.DataLayer.Entities;
-using System.Collections.Generic;
-
-namespace Classroom.Models.View
+﻿namespace Classroom.Models.View
 {
+    using System.Collections.Generic;
+
     public class ClassDataModel
     {
         public int ClassId { get; set; }

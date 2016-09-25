@@ -1,11 +1,7 @@
-﻿using Classroom.DataLayer.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace Classroom.Models.View
+﻿namespace Classroom.Models.View
 {
+    using System.Collections.Generic;
+
     public class StudentEnrolmentModel
     {
         public List<EnrolmentModel> ExistingStudents { get; set; }

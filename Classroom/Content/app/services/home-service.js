@@ -1,4 +1,6 @@
-﻿var app = angular.module("app", []);
+﻿// this file is not used
+
+var app = angular.module("app", []);
 
 app.service("HomeService", ["$http", function($http) {
     

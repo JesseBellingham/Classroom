@@ -42,7 +42,7 @@
         public HttpResponseMessage Get(int classId)
         {
             // This got messy fast
-            // Implement a entity to viewmodel conversion class
+            // Implement an entity to viewmodel conversion class
             var enrolledStudents = _studentService.GetStudentsOfClass(classId);
             var enrollableStudents = _studentService.GetEnrollableStudents(enrolledStudents, classId);
             var enrolledStudentModels = new List<EnrolmentModel>();

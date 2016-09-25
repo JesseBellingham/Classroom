@@ -1,5 +1,4 @@
-﻿
-namespace Classroom.DataLayer.DomainModels
+﻿namespace Classroom.DataLayer.DomainModels
 {
     public class ClassModel
     {

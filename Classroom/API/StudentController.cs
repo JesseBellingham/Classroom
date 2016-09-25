@@ -40,9 +40,10 @@
             _enrolmentService = enrolmentService;
             _studentService = studentService;
         }
+
         public HttpResponseMessage Get()
         {
-            return Request.CreateResponse(System.Net.HttpStatusCode.OK);
+            return Request.CreateResponse(HttpStatusCode.OK);
         }
 
         public HttpResponseMessage Create(EnrolmentModel model)

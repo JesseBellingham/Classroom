@@ -6,13 +6,13 @@
         <div class="unenrolled-students">
             <ul>
                 Enrollable students
-                <li class="list-group-item unenrolled-student-item" ng-repeat="student in enrollableStudents">{{student.studentFirstName + " " + student.studentLastName }}<button class="btn btn-primary btn-sm button-enrol" ng-click="enrolStudent(student.studentId)">Enrol</button></li>
+                <li class="list-group-item unenrolled-student-item" ng-repeat="student in enrollableStudents | orderBy: 'studentLastName'">{{student.studentFirstName + " " + student.studentLastName }}<button class="btn btn-primary btn-sm button-enrol" ng-click="enrolStudent(student.studentId)">Enrol</button></li>
             </ul>
         </div>
         <div class="enrolled-students">
             <ul>
                 Existing students
-                <li class="list-group-item" ng-repeat="student in existingStudents">{{student.studentFirstName + " " + student.studentLastName }}</li>
+                <li class="list-group-item" ng-repeat="student in existingStudents | orderBy: 'studentLastName'">{{student.studentFirstName + " " + student.studentLastName }}</li>
             </ul>
         </div>
     </div>    
