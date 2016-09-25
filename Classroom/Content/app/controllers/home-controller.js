@@ -73,7 +73,7 @@ app.service("HomeService", ["$rootScope", "$http", function($rootScope, $http) {
                 studentFirstName: newStudent.studentFirstName,
                 studentLastName: newStudent.studentLastName,
                 studentAge: newStudent.studentAge,
-                studentGPA: newStudent.studentGPA
+                studentGPA: newStudent.studentGPA // currently no validation checking that age/gpa are the correct type
             }
         }).success(function(data) {
             return data;

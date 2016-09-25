@@ -26,8 +26,8 @@
                     <td></td>
                     <td>
                         <h4>Enrolments</h4>
-                        <p ng-show="!class.enrolments">Nothing to display yet</p>
-                        <table class="table-bordered ng-table" ng-show="class.enrolments">
+                        <p ng-show="class.enrolments.length === 0">Nothing to display yet</p>
+                        <table class="table-bordered ng-table" ng-show="class.enrolments.length > 0">
                             <thead>
                                 <tr>
                                     <th>Student First Name</th>
