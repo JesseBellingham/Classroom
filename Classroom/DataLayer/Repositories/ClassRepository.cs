@@ -38,5 +38,15 @@ namespace Classroom.DataLayer.Repositories
             _dataContext.SaveChanges();
             return newClass.Id;
         }
+
+        public void UpdateClass(Class existingClass)
+        {
+            var classToUpdate = _dataContext.Classes.Where(c => c.Id == existingClass.Id).Single();
+            classToUpdate.ClassName = existingClass.ClassName;
+            classToUpdate.Location = existingClass.Location;
+            classToUpdate.TeacherName = existingClass.TeacherName;
+
+            _dataContext.SaveChanges();
+        }
     }
 }

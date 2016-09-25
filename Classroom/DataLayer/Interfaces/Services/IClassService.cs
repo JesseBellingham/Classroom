@@ -1,5 +1,6 @@
 ﻿namespace Classroom.DataLayer.Interfaces
 {
+    using DomainModels;
     using Entities;
     using System.Collections.Generic;
 
@@ -8,6 +9,7 @@
         List<Class> GetClasses();
         Class GetClassByName(string className);
         Class GetClassById(int id);
-        int CreateNewClass(string className, string location = null, string teacherName = null);
+        int CreateNewClass(ClassModel model);
+        bool UpdateClass(ClassModel model);
     }
 }

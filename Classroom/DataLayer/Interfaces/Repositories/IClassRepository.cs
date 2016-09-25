@@ -10,5 +10,6 @@
         IQueryable<Class> GetClasses(Expression<Func<Class, bool>> filter);
         IQueryable<Class> GetClasses();
         int CreateClass(Class newClass);
+        void UpdateClass(Class existingClass);
     }
 }

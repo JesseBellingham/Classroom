@@ -1,0 +1,15 @@
+﻿<div class="modal-header">
+    <h3 class="modal-title" id="modal-title">Add new student</h3>
+</div>
+<div class="modal-body">
+    <p><input type="text" ng-model="newStudent.studentFirstName" placeholder="First name" /><span class="missing-required-field-label" ng-show="firstNameMissing">Required</span></p>
+    <p><input type="text" ng-model="newStudent.studentLastName" placeholder="Last name" /><span class="missing-required-field-label" ng-show="firstNameMissing">Required</span></p>
+    <p><input type="text" ng-model="newStudent.studentAge" placeholder="Age (optional)" /></p>
+    <p><input type="text" ng-model="newStudent.studentGPA" placeholder="GPA (optional)" /></p>
+    <span class="label label-success label-result" ng-show="success">New student added successfully</span>
+    <span class="label label-danger label-result" ng-show="serverError">Something went wrong</span>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" type="button" ng-click="createNewStudent()">Create</button>
+    <button class="btn btn-warning" type="button" ng-click="close()">Done</button>
+</div>

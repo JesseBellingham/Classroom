@@ -44,7 +44,6 @@
 
         public List<Student> GetEnrollableStudents(List<Student>existingStudents, int classId)
         {
-            //var existingStudents = GetStudentsOfClass(classId);
             var names = existingStudents.Select(es => es.LastName);
             return
                 _studentRepository.GetStudents
@@ -57,15 +56,24 @@
                 ).ToList();
         }
 
-        public void CreateStudent(string firstName, string lastName)
+        public Student CreateStudent
+        (
+            string firstName,
+            string lastName,
+            double studentGPA = 0,
+            int studentAge = 0
+        )
         {
             var student = new Student
             {
                 FirstName = firstName,
-                LastName = lastName
+                LastName = lastName,
+                GPA = studentGPA,
+                Age = studentAge
             };
 
             _studentRepository.CreateStudent(student);
+            return student;
         }
     }
 }

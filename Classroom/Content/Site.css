@@ -26,18 +26,16 @@ textarea {
 {
     position: relative;
     min-width: 600px;
-    min-height: 150px;
 }
-.unenrolled-students { position: absolute; }
+.unenrolled-students { display: inline-block; }
 .enrolled-students
 {
-    position: absolute;
-    right: 150px;
+    display: inline-block;
 }
 .unenrolled-student-item
 {
     position: relative;
-    min-width: 200px;
+    min-width: 230px;
 }
 .button-enrol
 {
@@ -47,4 +45,13 @@ textarea {
 }
 .student-high-gpa { background-color: lightblue; }
 .student-low-gpa { background-color: lightsalmon; }
+.button-add-enrolments { margin-top: 5px; }
+.missing-required-field-label
+{
+    padding-left: 5px;
+    color: red;
+}
+.server-error { color: red; }
+.label-result { font-size: 100%; }
+.class-container { padding-top: 10px; }
 

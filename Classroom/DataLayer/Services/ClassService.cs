@@ -7,6 +7,7 @@
     using Interfaces;
     using Interfaces.Repositories;
     using System;
+    using DomainModels;
 
     public class ClassService : IClassService
     {
@@ -37,17 +38,33 @@
             return _classRepository.GetClasses(c => c.Id == id).SingleOrDefault();
         }
 
-        public int CreateNewClass(string className, string location = null, string teacherName = null)
+        public int CreateNewClass(ClassModel model)
         {
             var newClass = new Class
             {
-                ClassName = className,
-                Location = location,
-                TeacherName = teacherName
+                ClassName = model.ClassName,
+                Location = model.Location,
+                TeacherName = model.TeacherName
             };
 
             var classId = _classRepository.CreateClass(newClass);
             return classId;
+        }
+
+        public bool UpdateClass(ClassModel model)
+        {
+            var success = false;
+            var existingClass = GetClassById(model.ClassId);
+            if (existingClass != null)
+            { 
+                existingClass.ClassName = model.ClassName;
+                existingClass.Location = model.Location;
+                existingClass.TeacherName = model.TeacherName;
+
+                _classRepository.UpdateClass(existingClass);
+                success = true;
+            }
+            return success;
         }
     }
 }

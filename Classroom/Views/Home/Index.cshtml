@@ -2,7 +2,7 @@
     ViewBag.Title = "Home Page";
 }
 <div ng-controller="HomeCtrl">
-    <div class="row">
+    <div class="row class-container">
         <table class="table table-striped table-bordered ng-table">
             <thead>
                 <tr>
@@ -17,7 +17,7 @@
                     <td ng-bind="class.location"></td>
                     <td ng-bind="class.teacherName"></td>
                     <td><a href ng-click="editClassDetails(class)">Edit class details</a></td>
-                    <td><a href ng-click="class.$hideRow = !class.$hideRow">Show enrolment info</a></td>
+                    <td><a href ng-click="class.$hideRow = !class.$hideRow"><span ng-show="!class.$hideRow">Show</span><span ng-show="class.$hideRow">Hide</span> enrolment info</a></td>
                 </tr>
                 <tr ng-repeat-end ng-show="class.$hideRow" class="ng-hide">
                     <td></td>
@@ -25,11 +25,12 @@
                     <td></td>
                     <td></td>
                     <td>
-                        <table class>
+                        <h4>Enrolments</h4>
+                        <p ng-show="!class.enrolments">Nothing to display yet</p>
+                        <table class="table-bordered ng-table" ng-show="class.enrolments">
                             <thead>
-                                <tr>
-                                    <th>Enrolments</th>
-                                </tr>
+                                <!--<tr>-->
+                                <!--</tr>-->
                                 <tr>
                                     <th>Student First Name</th>
                                     <th>Student Last Name</th>
@@ -38,22 +39,23 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr ng-repeat="enrolment in class.enrolments" ng-class="{'student-high-gpa': enrolment.studentGPA > 3.2, 'student-low-gpa': enrolment.studentGPA < 2}">
+                                <tr ng-repeat="enrolment in class.enrolments | orderBy: 'studentLastName'" ng-class="{'student-high-gpa': enrolment.studentGPA > 3.2, 'student-low-gpa': enrolment.studentGPA < 2 && enrolment.studentGPA > 0}">
                                     <td ng-bind="enrolment.studentFirstName"></td>
                                     <td ng-bind="enrolment.studentLastName"></td>
-                                    <td ng-bind="enrolment.studentAge"></td>
-                                    <td ng-bind="enrolment.studentGPA"></td>
+                                    <td>{{enrolment.studentAge > 0 ? enrolment.studentAge : 'Not given'}}</td>
+                                    <td>{{enrolment.studentGPA > 0 ? enrolment.studentGPA : 'Not given'}}</td>
                                     <td ng-show="enrolment.studentGPA > 3.2"><a uib-tooltip="This student is excelling">Wow</a></td>
-                                    <td ng-show="enrolment.studentGPA < 2"><a uib-tooltip="This student is falling behind">Oh dear</a></td>
+                                    <td ng-show="enrolment.studentGPA < 2 && enrolment.studentGPA > 0"><a uib-tooltip="This student is falling behind">Oh dear</a></td>
                                 </tr>
                             </tbody>                            
                         </table>
-                        <button class="btn btn-primary" ng-click="addEnrolments(class.classId)">Add enrolments</button>
-                    </td>                   
+                        <button class="btn btn-primary button-add-enrolments" ng-click="addEnrolments(class.classId)">Add enrolments</button>
+                    </td>
                 </tr>
             </tbody>
         </table>
-        <button class="btn btn-primary" ng-click="createNewClass()">Create new class</button>
+        <button class="btn btn-primary" ng-click="createNewClass()">Add new class</button>
+        <button class="btn btn-primary" ng-click="createNewStudent()">Add new student</button>
     </div>
 
     <div class="row">

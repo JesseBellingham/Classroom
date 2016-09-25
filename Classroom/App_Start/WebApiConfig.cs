@@ -20,42 +20,59 @@
             config.Formatters.JsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
             config.MapHttpAttributeRoutes();
 
-            config.Routes.MapHttpRoute
-            (
-                name: "DefaultApi",
-                routeTemplate: "api/{controller}/{id}",
-                defaults: new { id = RouteParameter.Optional }
-            );
+            //config.Routes.MapHttpRoute
+            //(
+            //    name: "DefaultApi",
+            //    routeTemplate: "api/{controller}/{id}",
+            //    defaults: new { id = RouteParameter.Optional }
+            //);
 
+            #region Classes
             config.Routes.MapHttpRoute
             (
-                name: "GetClassData",
+                name: "GetClasses",
                 routeTemplate: "api/{controller}/{action}",
-                defaults: new { controller = "Home", action = "GetClassData" }
+                defaults: new { controller = "Class", action = "Get" }
             );
 
             config.Routes.MapHttpRoute
             (
-                name: "CreateNewClass",
+                name: "CreateClass",
                 routeTemplate: "api/{controller}/{action}",
-                defaults: new { controller = "Home", action = "CreateNewClass" }
+                defaults: new { controller = "Class", action = "Create" }
             );
 
             config.Routes.MapHttpRoute
             (
-                name: "GetStudentsForEnrolment",
+                name: "UpdateClass",
+                routeTemplate: "api/{controller}/{action}",
+                defaults: new { controller = "Class", action = "Update" }
+            );
+            #endregion
+            #region Enrolments
+            config.Routes.MapHttpRoute
+            (
+                name: "GetStudentEnrolments",
                 routeTemplate: "api/{controller}/{action}/{classId}",
-                defaults: new { controller = "Home", action = "GetStudentsForEnrolment" },
+                defaults: new { controller = "StudentEnrolment", action = "Get" },
                 constraints: new { classId = @"\d+"}
             );
 
             config.Routes.MapHttpRoute
             (
-                name: "Create",
+                name: "CreateEnrolment",
                 routeTemplate: "api/{controller}/{action}",
                 defaults: new { controller = "Enrolment", action = "Create" }
             );
-
+            #endregion
+            #region Students
+            config.Routes.MapHttpRoute
+            (
+                name: "CreateStudent",
+                routeTemplate: "api/{controller}/{action}",
+                defaults: new { controller = "Student", action = "Create" }
+            );
+            #endregion
             #region Dependency Injection
             var builder = new ContainerBuilder();
             

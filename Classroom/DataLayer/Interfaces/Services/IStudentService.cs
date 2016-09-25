@@ -9,6 +9,6 @@
         Student GetStudentById(int studentId);
         List<Student> GetStudentsOfClass(int classId);
         List<Student> GetEnrollableStudents(List<Student> existingStudents, int classId);
-        void CreateStudent(string firstName, string lastName);
+        Student CreateStudent(string studentfirstName, string studentlastName, double studentGPA = 0, int studentAge = 0);
     }
 }

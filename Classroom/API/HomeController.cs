@@ -40,96 +40,96 @@
             _studentService = studentService;
         }
 
-        [HttpGet]
-        public HttpResponseMessage GetClassData()
-        {
-            var classes = _classService.GetClasses();
-            var models = new List<ClassDataModel>();
+        //[HttpGet]
+        //public HttpResponseMessage GetClassData()
+        //{
+        //    var classes = _classService.GetClasses();
+        //    var models = new List<ClassDataModel>();
 
-            foreach (var classroom in classes)
-            {
-                var enrolments = _enrolmentService.GetEnrolmentsOfClass(classroom.Id);
-                var enrolmentModels = new List<EnrolmentModel>();
+        //    foreach (var classroom in classes)
+        //    {
+        //        var enrolments = _enrolmentService.GetEnrolmentsOfClass(classroom.Id);
+        //        var enrolmentModels = new List<EnrolmentModel>();
 
-                foreach (var enrolment in enrolments)
-                {
-                    enrolmentModels.Add
-                    (
-                        new EnrolmentModel
-                        {
-                            StudentId = enrolment.Id,
-                            ClassId = enrolment.ClassId,
-                            StudentFirstName = enrolment.Student.FirstName,
-                            StudentLastName = enrolment.Student.LastName,
-                            StudentAge = enrolment.Student.Age,
-                            StudentGPA = enrolment.Student.GPA
-                        }
-                    );
-                }
-                models.Add
-                (
-                    new ClassDataModel
-                    {
-                        ClassId = classroom.Id,
-                        ClassName = classroom.ClassName,
-                        TeacherName = classroom.TeacherName,
-                        Location = classroom.Location,
-                        Enrolments = enrolmentModels
-                    }
-                );
-            }
-            return Request.CreateResponse(HttpStatusCode.OK, models);
-        }
+        //        foreach (var enrolment in enrolments)
+        //        {
+        //            enrolmentModels.Add
+        //            (
+        //                new EnrolmentModel
+        //                {
+        //                    StudentId = enrolment.Id,
+        //                    ClassId = enrolment.ClassId,
+        //                    StudentFirstName = enrolment.Student.FirstName,
+        //                    StudentLastName = enrolment.Student.LastName,
+        //                    StudentAge = enrolment.Student.Age,
+        //                    StudentGPA = enrolment.Student.GPA
+        //                }
+        //            );
+        //        }
+        //        models.Add
+        //        (
+        //            new ClassDataModel
+        //            {
+        //                ClassId = classroom.Id,
+        //                ClassName = classroom.ClassName,
+        //                TeacherName = classroom.TeacherName,
+        //                Location = classroom.Location,
+        //                Enrolments = enrolmentModels
+        //            }
+        //        );
+        //    }
+        //    return Request.CreateResponse(HttpStatusCode.OK, models);
+        //}
 
-        public HttpResponseMessage CreateNewClass(NewClassModel model)
-        {
-            var classId = _classService.CreateNewClass(model.ClassName, model.Location, model.TeacherName);
-            return Request.CreateResponse(HttpStatusCode.OK, classId);
-        }
+        //public HttpResponseMessage CreateNewClass(NewClassModel model)
+        //{
+        //    var classId = _classService.CreateNewClass(model.ClassName, model.Location, model.TeacherName);
+        //    return Request.CreateResponse(HttpStatusCode.OK, classId);
+        //}
 
-        public HttpResponseMessage GetStudentsForEnrolment(int classId)
-        {
-            // This got messy fast
-            // Implement a entity to viewmodel conversion class
-            var enrolledStudents = _studentService.GetStudentsOfClass(classId);
-            var enrollableStudents = _studentService.GetEnrollableStudents(enrolledStudents, classId);
-            var enrolledStudentModels = new List<EnrolmentModel>();
-            var enrollableStudentModels = new List<EnrolmentModel>();            
+        //public HttpResponseMessage GetStudentsForEnrolment(int classId)
+        //{
+        //    // This got messy fast
+        //    // Implement a entity to viewmodel conversion class
+        //    var enrolledStudents = _studentService.GetStudentsOfClass(classId);
+        //    var enrollableStudents = _studentService.GetEnrollableStudents(enrolledStudents, classId);
+        //    var enrolledStudentModels = new List<EnrolmentModel>();
+        //    var enrollableStudentModels = new List<EnrolmentModel>();            
 
-            foreach (var enrolledStudent in enrolledStudents)
-            {
-                enrolledStudentModels.Add
-                (
-                    new EnrolmentModel
-                    {
-                        StudentId = enrolledStudent.Id,
-                        StudentFirstName = enrolledStudent.FirstName,
-                        StudentLastName = enrolledStudent.LastName
-                    }
-                );
-            }
+        //    foreach (var enrolledStudent in enrolledStudents)
+        //    {
+        //        enrolledStudentModels.Add
+        //        (
+        //            new EnrolmentModel
+        //            {
+        //                StudentId = enrolledStudent.Id,
+        //                StudentFirstName = enrolledStudent.FirstName,
+        //                StudentLastName = enrolledStudent.LastName
+        //            }
+        //        );
+        //    }
 
-            foreach (var enrollableStudent in enrollableStudents)
-            {
-                enrollableStudentModels.Add
-                (
-                    new EnrolmentModel
-                    {
-                        StudentId = enrollableStudent.Id,
-                        StudentFirstName = enrollableStudent.FirstName,
-                        StudentLastName = enrollableStudent.LastName
-                    }
-                );
-            }
+        //    foreach (var enrollableStudent in enrollableStudents)
+        //    {
+        //        enrollableStudentModels.Add
+        //        (
+        //            new EnrolmentModel
+        //            {
+        //                StudentId = enrollableStudent.Id,
+        //                StudentFirstName = enrollableStudent.FirstName,
+        //                StudentLastName = enrollableStudent.LastName
+        //            }
+        //        );
+        //    }
 
-            var studentEnrolmentModel = new StudentEnrolmentModel
-            {
-                ExistingStudents = enrolledStudentModels,
-                EnrollableStudents = enrollableStudentModels
-            };
+        //    var studentEnrolmentModel = new StudentEnrolmentModel
+        //    {
+        //        ExistingStudents = enrolledStudentModels,
+        //        EnrollableStudents = enrollableStudentModels
+        //    };
 
-            return Request.CreateResponse(HttpStatusCode.OK, studentEnrolmentModel);
-        }
+        //    return Request.CreateResponse(HttpStatusCode.OK, studentEnrolmentModel);
+        //}
 
         //[HttpPost]
         //public HttpResponseMessage EnrolStudent(EnrolmentModel model)
